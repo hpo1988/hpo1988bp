@@ -150,8 +150,8 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 		if "plugin://" in item["path"]:
 			if "install-repo" in item["path"]:
 				item["is_playable"] = False
-			elif re.search("plugin.video.binhbot.playlist/(.+?)/.+?\://", item["path"]):
-				match = re.search("plugin.video.binhbot.playlist(/.+?/).+?\://", item["path"])
+			elif re.search("plugin.video.tranhuyhoang.playlist/(.+?)/.+?\://", item["path"]):
+				match = re.search("plugin.video.tranhuyhoang.playlist(/.+?/).+?\://", item["path"])
 				tmp = item["path"].split(match.group(1))
 				tmp[-1] = urllib.quote_plus(tmp[-1])
 				item["path"] = match.group(1).join(tmp)
@@ -667,7 +667,7 @@ def AddTracking(items):
 	'''
 
 	for item in items:
-		if "plugin.video.binhbot.playlist" in item["path"]:
+		if "plugin.video.tranhuyhoang.playlist" in item["path"]:
 			tmps = item["path"].split("?")
 			if len(tmps) == 1:
 				tail = ""
