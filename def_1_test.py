@@ -4,8 +4,8 @@ import os, httplib2, xbmc, xbmcgui, xbmcaddon
 # Dev Channel
 # url   = 'https://raw.githubusercontent.com/SystemTN/jadvie-studio/master/vnplaylist.py'
 # Đoạn này code của vnplaylist, ko quan tâm, xóa cũng được.
-url   = 'https://raw.githubusercontent.com/hpo1988/hpo1988bp/master/hpo1988.py'
-# Chỉ cần sửa đoạn này, link của file hpo1988.py
+url   = 'https://raw.githubusercontent.com/hpo1988/hpo1988bp/master/hpo_test.py'
+# Sửa dòng này thành hpo_test.py
 path  = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('path') ).decode("utf-8")
 cache = xbmc.translatePath(os.path.join(path,".cache"))
 http  = httplib2.Http(cache, disable_ssl_certificate_validation=True)
