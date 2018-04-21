@@ -3,7 +3,7 @@
 import os, httplib2, xbmc, xbmcgui, xbmcaddon
 # Dev Channel
 # url   = 'https://raw.githubusercontent.com/SystemTN/jadvie-studio/master/vnplaylist.py'
-url   = 'https://raw.githubusercontent.com/hpo1988/hpo1988bp/master/hpo19881.py'
+url   = 'https://raw.githubusercontent.com/hpo1988/hpo1988bp/master/hpo1988.py'
 path  = xbmc.translatePath(xbmcaddon.Addon().getAddonInfo('path') ).decode("utf-8")
 cache = xbmc.translatePath(os.path.join(path,".cache"))
 http  = httplib2.Http(cache, disable_ssl_certificate_validation=True)
