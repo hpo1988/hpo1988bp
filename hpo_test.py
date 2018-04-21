@@ -13,7 +13,7 @@ image         = xbmc.translatePath(os.path.join(path, "icon.png"))
 
 plugin         = Plugin()
 addon          = xbmcaddon.Addon("plugin.video.hpo1988")
-pluginrootpath = "plugin://plugin.video.hpo1988"
+pluginrootpath = "plugin.video.tranhuyhoang"
 http           = httplib2.Http(cache, disable_ssl_certificate_validation=True)
 query_url      = "https://docs.google.com/spreadsheets/d/{sid}/gviz/tq?gid={gid}&headers=1&tq={tq}"
 sheet_headers  = {
@@ -22,7 +22,7 @@ sheet_headers  = {
 }
 
 def GetSheetIDFromSettings():
-	sid = "1p1lK3aEF05H3UlVhB3BUB5EDw7Jhczyd02UoK_kHLYI"
+	sid = "13zUxgD6SfGj1YmRa9RU4Vu1AgVv8EaBAsBP3MxEpXOY"
 	resp, content = http.request(plugin.get_setting("GSheetURL"),"HEAD")
 	try:
 		sid = re.compile("/d/(.+?)/").findall(resp["content-location"])[0]
@@ -168,7 +168,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 			item["path"] = pluginrootpath + "/executebuiltin/-"
 		else:
 			if "spreadsheets/d/" in item["path"]:
-				# https://docs.google.com/spreadsheets/d/1p1lK3aEF05H3UlVhB3BUB5EDw7Jhczyd02UoK_kHLYI/edit#gid=0
+				# https://docs.google.com/spreadsheets/d/13zUxgD6SfGj1YmRa9RU4Vu1AgVv8EaBAsBP3MxEpXOY/edit#gid=0
 				match_cache = re.search('cache=(.+?)($|&)',item["path"])
 				match_passw = re.search('passw=(.+?)($|&)',item["path"])
 
