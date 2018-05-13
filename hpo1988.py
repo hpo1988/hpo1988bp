@@ -220,8 +220,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 		if item["label2"].startswith("http"):
 			item["path"] += "?sub=" + urllib.quote_plus(item["label2"].encode("utf8"))
 		items += [item]
- 
-return items
+	 
 
 @plugin.route('/remove-playlists/', name="remove_all")
 @plugin.route('/remove-playlists/<item>')
