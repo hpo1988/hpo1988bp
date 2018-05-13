@@ -238,13 +238,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 			item["path"] += "?sub=" + urllib.quote_plus(item["label2"].encode("utf8"))
 		items += [item]
 	if url_path == "0":
-		add_playlist_item  = {
-			"context_menu": [
-				ClearPlaylists(""),
-			],
-			"label":"[COLOR yellow]*** cám ơn các bạn đã ủng hộ! ***[/COLOR]",
-			"path": "%s/add-playlist" % (pluginrootpath),
-			"thumbnail": "http://images.clipartpanda.com/thank-you-clipart-funny-thank_you_image_500_clr.png"
+		 
 		}
 		items += [add_playlist_item]
 		playlists = plugin.get_storage('playlists')
