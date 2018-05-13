@@ -225,7 +225,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 			"context_menu": [
 				ClearPlaylists(""),
 			],
-			"label":"[COLOR yellow]Cám ơn các bạn đã ũng hộ![/COLOR]",
+			"label":"[COLOR yellow]Cám ơn các bạn đã ủng hộ![/COLOR]",
 			"path": "%s/add-playlist" % (pluginrootpath),
 			"thumbnail": "http://userscontent2.emaze.com/images/5bc10631-6b26-4d3a-a56f-bd68522f965c/Slide21_Pic1_636000467320479770.png"
 		}
