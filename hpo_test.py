@@ -1,3 +1,20 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Explore
+ @hpo1988
+Sign out
+0
+0 0 hpo1988/hpo1988bp
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights  Settings
+hpo1988bp/hpo_test.py
+d8df38b  22 days ago
+@hpo1988 hpo1988 Update hpo_test.py
+     
+1099 lines (1040 sloc)  37.9 KB
 #!/usr/bin/python
 #coding=utf-8
 import httplib2, json, re, urllib, os, uuid, contextlib, zipfile, random, base64, time, thread
@@ -225,9 +242,9 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 			"context_menu": [
 				ClearPlaylists(""),
 			],
-			"label":"[COLOR yellow]*** Thêm Playlist ***[/COLOR]",
+			"label":"[COLOR yellow]*** CÁM ƠN CÁC BẠN ĐÃ ỦNG HỘ! ***[/COLOR]",
 			"path": "%s/add-playlist" % (pluginrootpath),
-			"thumbnail": "http://1.bp.blogspot.com/-gc1x9VtxIg0/VbggLVxszWI/AAAAAAAAANo/Msz5Wu0wN4E/s1600/playlist-advertorial.png"
+			"thumbnail": "http://images.clipartpanda.com/thank-you-clipart-funny-thank_you_image_500_clr.png"
 		}
 		items += [add_playlist_item]
 		playlists = plugin.get_storage('playlists')
@@ -1096,3 +1113,16 @@ if os.path.exists(cid_path)==False:
 		f.write(str(uuid.uuid1()))
 if __name__ == '__main__':
 	plugin.run()
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About
+Press h to open a hovercard with more details.
