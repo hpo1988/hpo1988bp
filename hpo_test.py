@@ -238,7 +238,13 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 			item["path"] += "?sub=" + urllib.quote_plus(item["label2"].encode("utf8"))
 		items += [item]
 	if url_path == "0":
-		 
+		add_playlist_item  = {
+			"context_menu": [
+				ClearPlaylists(""),
+			],
+			"label":"[COLOR yellow]*** Thêm Playlist ***[/COLOR]",
+			"path": "%s/add-playlist" % (pluginrootpath),
+			"thumbnail": "http://1.bp.blogspot.com/-gc1x9VtxIg0/VbggLVxszWI/AAAAAAAAANo/Msz5Wu0wN4E/s1600/playlist-advertorial.png"
 		}
 		items += [add_playlist_item]
 		playlists = plugin.get_storage('playlists')
@@ -372,7 +378,7 @@ def Section(path = "0", tracking_string = "Home"):
 
 @plugin.route('/add-playlist/<tracking_string>')
 def AddPlaylist(tracking_string = "Add Playlist"):
-	sheet_url = https://www.fshare.vn/file/TAO8WKRY93EF
+	sheet_url = plugin.keyboard(heading='Nhập URL của Google Spreadsheet (có hỗ trợ link rút gọn như bit.ly, goo.gl)')
 	if sheet_url:
 		try:
 			resp, content = http.request(sheet_url,"HEAD")
