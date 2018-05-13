@@ -359,7 +359,33 @@ def Section(path = "0", tracking_string = "Home"):
 	items = AddTracking(getItems(path))
 	return plugin.finish(items)
 
- @plugin.route('/acelist/<path>/<tracking_string>')
+@plugin.route('/add-playlist/<tracking_string>')
+def AddPlaylist(tracking_string = "Add Playlist"):
+	sheet_url = plugin.keyboard(heading='Nhập URL của Google Spreadsheet (có hỗ trợ link rút gọn như bit.ly, goo.gl)')
+	if sheet_url:
+		try:
+			resp, content = http.request(sheet_url,"HEAD")
+			sid, gid = re.compile("/d/(.+?)/.+?gid=(\d+)").findall(resp["content-location"])[0]
+			match_passw = re.search('passw=(.+?)($|&)', resp["content-location"])
+			playlists = plugin.get_storage('playlists')
+			name = plugin.keyboard(heading='Đặt tên cho Playlist')
+
+			item = "[[COLOR yellow]%s[/COLOR]] %s@%s" % (name,gid,sid)
+			if match_passw:
+				item += "@@" + match_passw.group(1)
+			if 'sections' in playlists:
+				playlists["sections"] = [item] + playlists["sections"]
+			else:
+				playlists["sections"] = [item]
+			xbmc.executebuiltin('Container.Refresh')
+		except: 
+			line1 = "Vui lòng nhập URL hợp lệ. Ví dụ dạng đầy đủ:"
+			line2 = "http://docs.google.com/spreadsheets/d/xxx/edit#gid=###"
+			line3 = "Hoặc rút gọn: http://bit.ly/xxxxxx hoặc http://goo.gl/xxxxx"
+			dlg = xbmcgui.Dialog()
+			dlg.ok("URL không hợp lệ!!!", line1, line2, line3)
+
+@plugin.route('/acelist/<path>/<tracking_string>')
 def AceList(path = "0", tracking_string = "AceList"):
 	(resp, content) = http.request(
 		path, "GET",
