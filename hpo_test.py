@@ -242,8 +242,8 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 			"context_menu": [
 				ClearPlaylists(""),
 			],
-			"label":"[COLOR yellow]*** CÁM ƠN CÁC BẠN ĐÃ ỦNG HỘ! ***[/COLOR]",
-			"path": "%s/add-playlist" % (pluginrootpath),
+			"label":"[COLOR yellow]*** cám ơn các bạn đã ủng hộ! ***[/COLOR]",
+			"path":https://www.fshare.vn/file/TAO8WKRY93EF
 			"thumbnail": "http://images.clipartpanda.com/thank-you-clipart-funny-thank_you_image_500_clr.png"
 		}
 		items += [add_playlist_item]
