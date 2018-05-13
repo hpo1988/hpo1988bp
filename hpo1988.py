@@ -225,9 +225,9 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 			"context_menu": [
 				ClearPlaylists(""),
 			],
-			"label":"[COLOR yellow]cám ơn các bạn đã ủng hộ[/COLOR]",
+			"label":"[COLOR yellow]CÁM ƠN CÁC BẠN ĐÃ ỦNG HỘ![/COLOR]",
 			"path": "%s/add-playlist" % (pluginrootpath),
-			"thumbnail": "http://images.clipartpanda.com/thank-you-clipart-funny-thank_you_image_500_clr.png"
+			"thumbnail": "http://userscontent2.emaze.com/images/5bc10631-6b26-4d3a-a56f-bd68522f965c/Slide21_Pic1_636000467320479770.png"
 		}
 		items += [add_playlist_item]
 		playlists = plugin.get_storage('playlists')
