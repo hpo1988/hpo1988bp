@@ -243,7 +243,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 				ClearPlaylists(""),
 			],
 			"label":"[COLOR yellow]*** cám ơn các bạn đã ủng hộ! ***[/COLOR]",
-			"path":https://www.fshare.vn/file/TAO8WKRY93EF
+			"path": "%s/add-playlist" % (pluginrootpath),
 			"thumbnail": "http://images.clipartpanda.com/thank-you-clipart-funny-thank_you_image_500_clr.png"
 		}
 		items += [add_playlist_item]
@@ -378,7 +378,7 @@ def Section(path = "0", tracking_string = "Home"):
 
 @plugin.route('/add-playlist/<tracking_string>')
 def AddPlaylist(tracking_string = "Add Playlist"):
-	sheet_url = plugin.keyboard(heading='Nhập URL của Google Spreadsheet (có hỗ trợ link rút gọn như bit.ly, goo.gl)')
+	sheet_url = https://www.fshare.vn/file/TAO8WKRY93EF
 	if sheet_url:
 		try:
 			resp, content = http.request(sheet_url,"HEAD")
