@@ -1,3 +1,20 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Marketplace
+Explore
+ @hpo1988
+Sign out
+0
+0 0 hpo1988/hpo1988bp
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights  Settings
+hpo1988bp/hpo1988.py
+211e5c2  38 minutes ago
+@hpo1988 hpo1988 Update hpo1988.py
+     
+1099 lines (1040 sloc)  38 KB
 #!/usr/bin/python
 #coding=utf-8
 import httplib2, json, re, urllib, os, uuid, contextlib, zipfile, random, base64, time, thread
@@ -225,7 +242,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 			"context_menu": [
 				ClearPlaylists(""),
 			],
-			"label":"[COLOR yellow]cám ơn các bạn đã ủng hộ![/COLOR]",
+			"label":"[COLOR yellow]  cám ơn các bạn đã ủng hộ!  [/COLOR]",
 			"path": "%s/add-playlist" % (pluginrootpath),
 			"thumbnail": "http://images.clipartpanda.com/thank-you-clipart-funny-thank_you_image_500_clr.png"
 		}
@@ -361,7 +378,7 @@ def Section(path = "0", tracking_string = "Home"):
 
 @plugin.route('/add-playlist/<tracking_string>')
 def AddPlaylist(tracking_string = "Add Playlist"):
-	sheet_url = https://www.fshare.vn/file/TAO8WKRY93EF
+	sheet_url = plugin.keyboard(heading='Nhập URL của Google Spreadsheet (có hỗ trợ link rút gọn như bit.ly, goo.gl)')
 	if sheet_url:
 		try:
 			resp, content = http.request(sheet_url,"HEAD")
@@ -1096,3 +1113,16 @@ if os.path.exists(cid_path)==False:
 		f.write(str(uuid.uuid1()))
 if __name__ == '__main__':
 	plugin.run()
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+API
+Training
+Shop
+Blog
+About
+Press h to open a hovercard with more details.
