@@ -256,44 +256,43 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 		if item["label2"].startswith("http"):
 			item["path"] += "?sub=" + urllib.quote_plus(item["label2"].encode("utf8"))
 		items += [item]
-	if url_path == "0":
-		add_playlist_item = {
-			"context_menu": [
-				ClearPlaylists(""),
-			],
-			"label": "[COLOR yellow]*** Thêm Playlist ***[/COLOR]",
-			"path": "%s/add-playlist" % (pluginrootpath),
-			"thumbnail": "http://1.bp.blogspot.com/-gc1x9VtxIg0/VbggLVxszWI/AAAAAAAAANo/Msz5Wu0wN4E/s1600/playlist-advertorial.png"
-		}
-		items += [add_playlist_item]
-		playlists = plugin.get_storage('playlists')
-		if 'sections' in playlists:
-			for section in playlists['sections']:
-				item = {
-					"context_menu": [
-						ClearPlaylists(section),
-					]
-				}
-				if "@@" in section:
-					tmp = section.split("@@")
-					passw = tmp[-1]
-					section = tmp[0]
-					item["label"] = section
-					item["path"] = "%s/password-section/%s/%s" % (
-						pluginrootpath,
-						passw,
-						section.split("] ")[-1]
-					)
-				else:
-					item["label"] = section
-					item["path"] = "%s/section/%s" % (
-						pluginrootpath,
-						section.split("] ")[-1]
-					)
-				item["thumbnail"] = "http://1.bp.blogspot.com/-gc1x9VtxIg0/VbggLVxszWI/AAAAAAAAANo/Msz5Wu0wN4E/s1600/playlist-advertorial.png"
-				items.append(item)
+	#if url_path == "0":
+	#	add_playlist_item  = {
+	#		"context_menu": [
+	#			ClearPlaylists(""),
+	#		],
+	#		"label":"[COLOR yellow]cám ơn các bạn đã ủng hộ[/COLOR]",
+	#		"path": "%s/add-playlist" % (pluginrootpath),
+	#		"thumbnail": "http://userscontent2.emaze.com/images/5bc10631-6b26-4d3a-a56f-bd68522f965c/Slide21_Pic1_636000467320479770.png"
+	#	}
+	#	items += [add_playlist_item]
+	#	playlists = plugin.get_storage('playlists')
+	#	if 'sections' in playlists:
+	#		for section in playlists['sections']:
+	#			item = {
+	#				"context_menu": [
+	#					ClearPlaylists(section),
+	#				]
+	#			}
+	#			if "@@" in section:
+	#				tmp     = section.split("@@")
+	#				passw   = tmp[-1]
+	#				section = tmp[0]
+	#				item["label"] = section
+	#				item["path"]  = "%s/password-section/%s/%s" % (
+	#					pluginrootpath,
+	#					passw,
+	#					section.split("] ")[-1]
+	#				)
+	#			else:
+	#				item["label"] = section
+	#				item["path"]  = "%s/section/%s" % (
+	#					pluginrootpath,
+	#					section.split("] ")[-1]
+	#				)
+	#			item["thumbnail"] = "http://1.bp.blogspot.com/-gc1x9VtxIg0/VbggLVxszWI/AAAAAAAAANo/Msz5Wu0wN4E/s1600/playlist-advertorial.png"
+	#			items.append(item)
 	return items
-
 
 @plugin.route('/remove-playlists/', name="remove_all")
 @plugin.route('/remove-playlists/<item>')
