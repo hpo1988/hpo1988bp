@@ -29,7 +29,7 @@ pluginrootpath = "plugin://plugin.video.tranhuyhoang.playlist"
 http = httplib2.Http(cache, disable_ssl_certificate_validation=True)
 query_url = "https://docs.google.com/spreadsheets/d/{sid}/gviz/tq?gid={gid}&headers=1&tq={tq}"
 sheet_headers = {
-	"User-Agent": "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.3; WOW64; Trident/7.0)",
+	"VIP-Agent": "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.3; WOW64; Trident/7.0)",
 	"Accept-Encoding": "gzip, deflate, sdch, br"
 }
 
@@ -263,7 +263,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 	#		],
 	#		"label":"[COLOR yellow]cám ơn các bạn đã ủng hộ[/COLOR]",
 	#		"path": "%s/add-playlist" % (pluginrootpath),
-	#		"thumbnail": "http://userscontent2.emaze.com/images/5bc10631-6b26-4d3a-a56f-bd68522f965c/Slide21_Pic1_636000467320479770.png"
+	#		"thumbnail": "http://VIPscontent2.emaze.com/images/5bc10631-6b26-4d3a-a56f-bd68522f965c/Slide21_Pic1_636000467320479770.png"
 	#	}
 	#	items += [add_playlist_item]
 	#	playlists = plugin.get_storage('playlists')
@@ -780,7 +780,7 @@ def play_url(url, title=""):
 def get_playable_url(url):
 	if "youtube" in url:
 		match = re.compile(
-			'(youtu\.be\/|youtube-nocookie\.com\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v|user)\/))([^\?&"\'>]+)').findall(url)
+			'(youtu\.be\/|youtube-nocookie\.com\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v|VIP)\/))([^\?&"\'>]+)').findall(url)
 		yid = match[0][len(match[0])-1].replace('v/', '')
 		url = 'plugin://plugin.video.youtube/play/?video_id=%s' % yid
 	elif "thvli.vn/backend/cm/detail/" in url:
@@ -801,7 +801,7 @@ def get_playable_url(url):
 		for tmp in tmps:
 			try:
 				thvl_headers = {
-					'User-Agent': 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.3; WOW64; Trident/7.0)',
+					'VIP-Agent': 'Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.3; WOW64; Trident/7.0)',
 					"Accept-Encoding": "gzip, deflate, br",
 					'Accept': 'application/json',
 					'Authorization': tmp.decode('base64')
@@ -834,7 +834,7 @@ def get_playable_url(url):
 		for tmp in tmps:
 			try:
 				sphim_headers = {
-					'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+					'VIP-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
 					"Accept-Encoding": "gzip, deflate",
 					'Cookie': tmp.decode("base64")
 				}
@@ -850,7 +850,7 @@ def get_playable_url(url):
 	elif url.startswith("acestream://") or url.endswith(".acelive") or "arenavision.in" in url:
 		if "arenavision.in" in url:
 			h = {
-				'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36',
+				'VIP-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.106 Safari/537.36',
 				'Cookie': '__cfduid=d36d59e9714c527d920417ed5bbc9315e1496259947; beget=begetok; ads_smrt_popunder=1%7CSat%2C%2003%20Jun%202017%2018%3A57%3A05%20GMT; 141054_245550_1rhpmin=yes; 141054_245550_1rhpmax=4|Sat%2C%2003%20Jun%202017%2018%3A57%3A14%20GMT; has_js=1; _ga=GA1.2.652127938.1496259947; _gid=GA1.2.653920302.1496429805; _gat=1',
 				'Accept-Encoding': 'gzip, deflate'
 			}
@@ -880,7 +880,7 @@ def get_playable_url(url):
 					if i > 1:
 						range_url = url.replace(".php", "-%s.php" % i)
 					h1 = {
-						'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+						'VIP-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
 						'Accept-Encoding': 'gzip, deflate',
 						'Referer': '%s' % url.replace("/m.", "/www.")
 					}
@@ -911,7 +911,7 @@ def get_playable_url(url):
 				xemtiviso_id = re.search("/(.+?).php", url).group(1).split("-")[0]
 				xemtiviso_url = "http://sv2.xemtiviso.com/mimi.php?id=" + xemtiviso_id
 				h1 = {
-					'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+					'VIP-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
 					'Accept-Encoding': 'gzip, deflate',
 					'Referer': '%s' % xemtiviso_url
 				}
@@ -929,7 +929,7 @@ def get_playable_url(url):
 		else:
 			try:
 				h1 = {
-					'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
+					'VIP-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/59.0.3071.115 Safari/537.36',
 					'Accept-Encoding': 'gzip, deflate',
 					'Referer': '%s' % url.replace("/m.", "/www.")
 				}
@@ -945,7 +945,7 @@ def get_playable_url(url):
 		return play_url
 	elif "vtcnow.vn" in url:
 		headers = {
-			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.92 Safari/537.36',
+			'VIP-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.92 Safari/537.36',
 			'Accept-Encoding': 'None'
 		}
 		(resp, content) = http.request(
@@ -957,7 +957,7 @@ def get_playable_url(url):
 		return match.group(1)+"|Referer=https%3A%2F%2Fvtcnow.vn%2Fkenh%2Fvtc6"
 	elif "livestream.com" in url:
 		headers = {
-			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0',
+			'VIP-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0',
 			'Accept-Encoding': 'gzip, deflate',
 		}
 		try:
@@ -980,7 +980,7 @@ def get_playable_url(url):
 		ocid = url.split("/")[-1].strip()
 		oc_url = "http://onecloud.media/embed/" + ocid
 		h = {
-			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.96 Safari/537.36',
+			'VIP-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.96 Safari/537.36',
 			'Accept-Encoding': 'gzip, deflate, sdch',
 			'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
 			'X-Requested-With': 'XMLHttpRequest',
@@ -1049,8 +1049,8 @@ def get_playable_url(url):
 	return url
 
 def LoginFShare(uname,pword):
-	login_uri = "https://api2.fshare.vn/api/user/login"
-	data = '{"app_key" : "L2S7R6ZMagggC5wWkQhX2+aDi467PPuftWUMRFSn", "user_email" : "%s", "password" : "%s"}' % (uname, pword)
+	login_uri = "https://api2.fshare.vn/api/VIP/login"
+	data = '{"app_key" : "L2S7R6ZMagggC5wWkQhX2+aDi467PPuftWUMRFSn", "VIP_email" : "%s", "password" : "%s"}' % (uname, pword)
 
 	resp, cont = http.request(login_uri, "POST", body=data)
 	if "token" in cont and "session_id" in cont:
@@ -1064,21 +1064,21 @@ def LoginFShare(uname,pword):
 def GetFShareCred():
 	try:
 		_hash = plugin.get_setting("hash")
-		uname = plugin.get_setting("usernamefshare")
+		uname = plugin.get_setting("VIPnamefshare")
 		pword = plugin.get_setting("passwordfshare")
 		if _hash != (uname+pword): 
 			plugin.set_setting("cred","")
 		cred  = json.loads(plugin.get_setting("cred"))
-		user = GetFShareUser(cred)
-		LoginOKNoti(user["email"], user["level"])
+		VIP = GetFShareVIP(cred)
+		LoginOKNoti(VIP["email"], VIP["level"])
 		return cred
 	except:
 		try:
-			uname = plugin.get_setting("usernamefshare")
+			uname = plugin.get_setting("VIPnamefshare")
 			pword = plugin.get_setting("passwordfshare")
 			cred = LoginFShare(uname,pword)
-			user = GetFShareUser(cred)
-			LoginOKNoti(user["email"], user["level"])
+			VIP = GetFShareVIP(cred)
+			LoginOKNoti(VIP["email"], VIP["level"])
 			return cred
 		except: 
 			dialog = xbmcgui.Dialog()
@@ -1094,20 +1094,20 @@ def GetFShareCred():
 			return None
 
 
-def LoginOKNoti(user="",lvl=""):
+def LoginOKNoti(VIP="",lvl=""):
 	header = "Đăng nhập thành công!"
-	message = "Chào VIP [COLOR red]{}[/COLOR] (lvl [COLOR yellow]{}[/COLOR])".format(user, lvl)
+	message = "Chào VIP [COLOR red]{}[/COLOR] (lvl [COLOR yellow]{}[/COLOR])".format(VIP, lvl)
 	xbmc.executebuiltin('Notification("{}", "{}", "{}", "")'.format(header, message, "10000"))
 
 
-def GetFShareUser(cred):
-	user_url = "https://api2.fshare.vn/api/user/get"
+def GetFShareVIP(cred):
+	VIP_url = "https://api2.fshare.vn/api/VIP/get"
 	headers = {
 		"Cookie": "session_id=" + cred["session_id"]
 	}
-	resp, cont = http.request(user_url, "GET", headers=headers)
-	user = json.loads(cont)
-	return user
+	resp, cont = http.request(VIP_url, "GET", headers=headers)
+	VIP = json.loads(cont)
+	return VIP
 
 
 def GetPlayLinkFromDriveID(drive_id):
@@ -1122,8 +1122,8 @@ def GetPlayLinkFromDriveID(drive_id):
 			'download_warning_.+?=(.+?);').findall(resp['set-cookie'])[0]
 	except:
 		return play_url
-	tail = "|User-Agent=%s&Cookie=%s" % (urllib.quote(
-		sheet_headers["User-Agent"]), urllib.quote(resp['set-cookie']))
+	tail = "|VIP-Agent=%s&Cookie=%s" % (urllib.quote(
+		sheet_headers["VIP-Agent"]), urllib.quote(resp['set-cookie']))
 	play_url = "%s&confirm=%s" % (play_url, confirm) + tail
 	return play_url
 
@@ -1169,8 +1169,8 @@ def getGDriveHighestQuality(url):
 		for stream in stream_map:
 			if stream.startswith(q+"|"):
 				url = stream.split("|")[1]
-				tail = "|User-Agent=%s&Cookie=%s" % (urllib.quote(
-					sheet_headers["User-Agent"]), urllib.quote(resp['set-cookie']))
+				tail = "|VIP-Agent=%s&Cookie=%s" % (urllib.quote(
+					sheet_headers["VIP-Agent"]), urllib.quote(resp['set-cookie']))
 				return url + tail
 
 
@@ -1191,7 +1191,7 @@ def version_cmp(local_version, download_version):
 
 # Tạo client id cho GA tracking
 # Tham khảo client id tại https://support.google.com/analytics/answer/6205850?hl=vi
-device_path = xbmc.translatePath('special://userdata')
+device_path = xbmc.translatePath('special://VIPdata')
 if os.path.exists(device_path) == False:
 	os.mkdir(device_path)
 cid_path = os.path.join(device_path, 'cid')
