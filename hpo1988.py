@@ -1095,7 +1095,7 @@ def GetFShareCred():
 
 
 def LoginOKNoti(user="",lvl=""):
-	header = "Đăng nhập thành công!"
+	header = "[COLOR yellow]Đăng nhập thành công![/COLOR]"
 	message = "Chào VIP [COLOR red]{}[/COLOR] (lvl [COLOR yellow]{}[/COLOR])".format(user, lvl)
 	xbmc.executebuiltin('Notification("{}", "{}", "{}", "")'.format(header, message, "10000"))
 
