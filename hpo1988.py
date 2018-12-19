@@ -30,7 +30,7 @@ http = httplib2.Http(cache, disable_ssl_certificate_validation=True)
 query_url = "https://docs.google.com/spreadsheets/d/{sid}/gviz/tq?gid={gid}&headers=1&tq={tq}"
 sheet_headers = {
 	"User-Agent": "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.3; WOW64; Trident/7.0)",
-	"Accept-Encoding": "gzip, deflate, sdch, br"
+	"Accept-Encoding": "gzip, deflate, sdch"
 }
 
 
@@ -80,6 +80,7 @@ def M3UToItems(url_path=""):
 			# Kiểu link plugin://
 			if item["path"].startswith("plugin://"):
 				item["is_playable"] = True
+				item["info"] = {"type": "video"}
 			# Kiểu link .ts
 			elif re.search("\.ts$", item["path"]):
 				item["path"] = "plugin://plugin.video.f4mTester/?url=%s&streamtype=TSDOWNLOADER&use_proxy_for_chunks=True&name=%s" % (
@@ -95,6 +96,7 @@ def M3UToItems(url_path=""):
 				item["path"] = pluginrootpath + \
 					"/play/%s" % urllib.quote_plus(item["path"])
 				item["is_playable"] = True
+				item["info"] = {"type": "video"}
 		else:
 			# Nếu không phải...
 			item["is_playable"] = False
@@ -183,12 +185,14 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 				item["path"] = match.group(1).join(tmp)
 				if "/play/" in match.group(1):
 					item["is_playable"] = True
+					item["info"] = {"type": "video"}
 			elif item["path"].startswith("plugin://plugin.video.f4mTester"):
 				item["is_playable"] = False
 				item["path"] = pluginrootpath + \
 					"/executebuiltin/" + urllib.quote_plus(item["path"])
 			elif "/play/" in item["path"]:
 				item["is_playable"] = True
+				item["info"] = {"type": "video"}
 		elif item["path"] == "":
 			item["label"] = "[I]%s[/I]" % item["label"]
 			item["is_playable"] = False
@@ -212,6 +216,9 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 				elif match_passw:
 					item["path"] = pluginrootpath + \
 						"/password-section/%s/%s@%s" % (match_passw.group(1), gid, sheet_id)
+			elif re.search(r'textuploader', item["path"]):
+				item["path"] = pluginrootpath + \
+					"/m3u/" + urllib.quote_plus(item["path"])
 			elif any(service in item["path"] for service in ["acelisting.in"]):
 				item["path"] = pluginrootpath + \
 					"/acelist/" + urllib.quote_plus(item["path"])
@@ -227,6 +234,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 				item["path"] = "plugin://plugin.video.xshare/?mode=3&page=0&url=" + \
 					urllib.quote_plus(item["path"])
 				item["is_playable"] = True
+				item["info"] = {"type": "video"}
 				item["path"] = pluginrootpath + "/play/" + urllib.quote_plus(item["path"])
 			elif "youtube.com/channel" in item["path"]:
 				# https://www.youtube.com/channel/UC-9-kyTW8ZkZNDHQJ6FgpwQ
@@ -252,6 +260,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 			else:
 				# Nếu là direct link thì route đến hàm play_url
 				item["is_playable"] = True
+				item["info"] = {"type": "video"}
 				item["path"] = pluginrootpath + "/play/" + urllib.quote_plus(item["path"])
 		if item["label2"].startswith("http"):
 			item["path"] += "?sub=" + urllib.quote_plus(item["label2"].encode("utf8"))
@@ -293,6 +302,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 	#			item["thumbnail"] = "http://1.bp.blogspot.com/-gc1x9VtxIg0/VbggLVxszWI/AAAAAAAAANo/Msz5Wu0wN4E/s1600/playlist-advertorial.png"
 	#			items.append(item)
 	return items
+
 
 @plugin.route('/remove-playlists/', name="remove_all")
 @plugin.route('/remove-playlists/<item>')
@@ -458,6 +468,7 @@ def AceList(path="0", tracking_string="AceList"):
 			urllib.quote_plus("[AceList] %s" % item["label"])
 		)
 		item["is_playable"] = True
+		item["info"] = {"type": "video"}
 		items += [item]
 	return plugin.finish(items)
 
@@ -515,8 +526,9 @@ def FShare(path="0", tracking_string="FShare"):
 				urllib.quote_plus("https://www.fshare.vn/file/" + i["linkcode"]),
 				urllib.quote_plus("[FShare] %s (%s)" % (name, size))
 			)
-			item["label"] = "[FShare] %s (%s)" % (name, size)
+			item["label"] = "%s (%s)" % (name, size)
 			item["is_playable"] = True
+			item["info"] = {"type": "video"}
 		items += [item]
 	if len(fshare_items) >= 20:
 		path = "https://www.fshare.vn/folder/%s?page=%s" % (folder_id, page + 1)
@@ -943,7 +955,7 @@ def get_playable_url(url):
 			except:
 				pass
 		return play_url
-	elif "vtcnow.vn" in url:
+	elif "vtc.gov.vn" in url:
 		headers = {
 			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.92 Safari/537.36',
 			'Accept-Encoding': 'None'
@@ -953,8 +965,8 @@ def get_playable_url(url):
 			"GET",
 			headers=headers
 		)
-		match = re.search('src: "(.+?)"', content)
-		return match.group(1)+"|Referer=https%3A%2F%2Fvtcnow.vn%2Fkenh%2Fvtc6"
+		match = re.search("src: '(.+?)'", content)
+		return match.group(1)
 	elif "livestream.com" in url:
 		headers = {
 			'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64; rv:48.0) Gecko/20100101 Firefox/48.0',
@@ -1095,7 +1107,7 @@ def GetFShareCred():
 
 
 def LoginOKNoti(user="",lvl=""):
-	header = "[COLOR yellow]Đăng nhập thành công![/COLOR]"
+	header = "Đăng nhập thành công!"
 	message = "Chào [COLOR red]VIP[/COLOR] [COLOR lime]{}[/COLOR] (lvl [COLOR yellow]{}[/COLOR])".format(user, lvl)
 	xbmc.executebuiltin('Notification("{}", "{}", "{}", "")'.format(header, message, "10000"))
 
