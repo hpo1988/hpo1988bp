@@ -152,9 +152,8 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 		url, "GET",
 		headers=sheet_headers
 	)
-	_re = "google.visualization.Query.setResponse\((.+?)\);"
+	_re = "google.visualization.Query.setResponse\((.+)\);"
 	_json = json.loads(re.compile(_re).findall(content)[0])
-
 	items = []
 	for row in _json["table"]["rows"]:
 		item = {}
@@ -265,7 +264,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 		if item["label2"].startswith("http"):
 			item["path"] += "?sub=" + urllib.quote_plus(item["label2"].encode("utf8"))
 		items += [item]
-	#if url_path == "0":
+#if url_path == "0":
 	#	add_playlist_item  = {
 	#		"context_menu": [
 	#			ClearPlaylists(""),
@@ -1039,14 +1038,21 @@ def get_playable_url(url):
 					body=json.dumps(data),
 					headers=fshare_headers
 				)
+				url = json.loads(content)["location"]
 				if resp.status == 404:
-					history = plugin.get_storage('history')
 					header = "Không lấy được link FShare VIP!"
 					message = "Link không tồn tại hoặc file đã bị xóa"
 					xbmc.executebuiltin('Notification("%s", "%s", "%d", "%s")' % (header, message, 10000, ''))
 					return None
-				else:
-					return json.loads(content)["location"]
+				(resp, content) = http.request(
+					url, "HEAD"
+				)
+				if '/ERROR' in resp['content-location']:
+					header = "Không lấy được link FShare VIP!"
+					message = "Link không tồn tại hoặc file đã bị xóa"
+					xbmc.executebuiltin('Notification("%s", "%s", "%d", "%s")' % (header, message, 10000, ''))
+					return None
+				return url
 			return None
 		except:	pass
 	elif "tv24.vn" in url:
@@ -1107,8 +1113,8 @@ def GetFShareCred():
 
 
 def LoginOKNoti(user="",lvl=""):
-	header = "[COLOR yellow]Đăng nhập thành công![/COLOR]"
-	message = "Chào [COLOR red]VIP[/COLOR] [COLOR lime]{}[/COLOR] (lvl [COLOR yellow]{}[/COLOR])".format(user, lvl)
+	header = "Đăng nhập thành công!"
+	message = "Chào user [COLOR orange]{}[/COLOR] (lvl [COLOR yellow]{}[/COLOR])".format(user, lvl)
 	xbmc.executebuiltin('Notification("{}", "{}", "{}", "")'.format(header, message, "10000"))
 
 
