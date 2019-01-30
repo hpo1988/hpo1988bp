@@ -35,7 +35,7 @@ sheet_headers = {
 
 
 def GetSheetIDFromSettings():
-	sid = "13zUxgD6SfGj1YmRa9RU4Vu1AgVv8EaBAsBP3MxEpXOY"
+	sid = "1zL6Kw4ZGoNcIuW9TAlHWZrNIJbDU5xHTtz-o8vpoJss"
 	resp, content = http.request(plugin.get_setting("GSheetURL"), "HEAD")
 	try:
 		sid = re.compile("/d/(.+?)/").findall(resp["content-location"])[0]
@@ -198,7 +198,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 			item["path"] = pluginrootpath + "/executebuiltin/-"
 		else:
 			if "spreadsheets/d/" in item["path"]:
-				# https://docs.google.com/spreadsheets/d/13zUxgD6SfGj1YmRa9RU4Vu1AgVv8EaBAsBP3MxEpXOY/edit#gid=0
+				# https://docs.google.com/spreadsheets/d/1zL6Kw4ZGoNcIuW9TAlHWZrNIJbDU5xHTtz-o8vpoJss/edit#gid=0
 				match_cache = re.search('cache=(.+?)($|&)', item["path"])
 				match_passw = re.search('passw=(.+?)($|&)', item["path"])
 
@@ -264,7 +264,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 		if item["label2"].startswith("http"):
 			item["path"] += "?sub=" + urllib.quote_plus(item["label2"].encode("utf8"))
 		items += [item]
-#if url_path == "0":
+	if url_path == "0":
 	#	add_playlist_item  = {
 	#		"context_menu": [
 	#			ClearPlaylists(""),
