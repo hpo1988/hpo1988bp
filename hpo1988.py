@@ -264,7 +264,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 		if item["label2"].startswith("http"):
 			item["path"] += "?sub=" + urllib.quote_plus(item["label2"].encode("utf8"))
 		items += [item]
-#if url_path == "0":
+	if url_path == "0":
 	#	add_playlist_item  = {
 	#		"context_menu": [
 	#			ClearPlaylists(""),
