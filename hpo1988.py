@@ -302,7 +302,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 						pluginrootpath,
 						section.split("] ")[-1]
 					)
-				item["thumbnail"] = "http://1.bp.blogspot.com/-gc1x9VtxIg0/VbggLVxszWI/AAAAAAAAANo/Msz5Wu0wN4E/s1600/playlist-advertorial.png"
+				item["thumbnail"] = "https://www.upsieutoc.com/images/2019/06/17/VIP-NGON.png"
 				items.append(item)
 	return items
 
