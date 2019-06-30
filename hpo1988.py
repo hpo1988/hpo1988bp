@@ -440,7 +440,7 @@ def AddPlaylist(tracking_string="Add Playlist"):
 			playlists = plugin.get_storage('playlists')
 			name = plugin.keyboard(heading='Đặt tên cho Playlist')
 
-			item = "[[COLOR yellow]%s[/COLOR]] %s@%s" % (name, gid, sid)
+			item = "[[COLOR red]%s[/COLOR]] %s@%s" % (name, gid, sid)
 			if match_passw:
 				item += "@@" + match_passw.group(1)
 			if 'sections' in playlists:
@@ -1139,7 +1139,7 @@ def GetFShareCred():
 			dialog = xbmcgui.Dialog()
 			yes = dialog.yesno(
 				'Đăng nhập không thành công!\n',
-				'[COLOR yellow]Bạn muốn nhập tài khoản FShare VIP bây giờ không?[/COLOR]',
+				'[COLOR yellow]Bạn cần nhập tài khoản VIP FShare để xem?Nếu chưa có tài khoản thì liên hệ qua**FB:tranhuyhoang HOẶC ZALO:0974 090 325 để đăng ký tài khoản VIP ngay bây giờ![/COLOR]',
 				yeslabel='OK, nhập ngay',
 				nolabel='Bỏ qua'
 			)
