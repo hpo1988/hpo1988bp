@@ -32,7 +32,7 @@ query_url = "https://docs.google.com/spreadsheets/d/{sid}/gviz/tq?gid={gid}&head
 sheet_headers = {
 	"User-Agent": "Mozilla/5.0 (compatible; MSIE 10.0; Windows NT 6.3; WOW64; Trident/7.0)",
 	"Accept-Encoding": "gzip, deflate, sdch"
-
+}
 
 
 def GetSheetIDFromSettings():
