@@ -25,8 +25,8 @@ addons_folder = xbmc.translatePath('special://home/addons')
 image = xbmc.translatePath(os.path.join(path, "icon.png"))
 
 plugin = Plugin()
-addon = xbmcaddon.Addon("plugin.video.tranhuyhoang.playlist")
-pluginrootpath = "plugin://plugin.video.tranhuyhoang.playlist"
+addon = xbmcaddon.Addon("plugin.video.thongld.vnplaylist")
+pluginrootpath = "plugin://plugin.video.thongld.vnplaylist"
 http = httplib2.Http(cache, disable_ssl_certificate_validation=True)
 query_url = "https://docs.google.com/spreadsheets/d/{sid}/gviz/tq?gid={gid}&headers=1&tq={tq}"
 sheet_headers = {
@@ -177,9 +177,9 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 		if "plugin://" in item["path"]:
 			if "install-repo" in item["path"]:
 				item["is_playable"] = False
-			elif re.search("plugin.video.tranhuyhoang.playlist/(.+?)/.+?\://", item["path"]):
+			elif re.search("plugin.video.thongld.vnplaylist/(.+?)/.+?\://", item["path"]):
 				match = re.search(
-					"plugin.video.tranhuyhoang.playlist(/.+?/).+?\://", item["path"])
+					"plugin.video.thongld.vnplaylist(/.+?/).+?\://", item["path"])
 				tmp = item["path"].split(match.group(1))
 				tmp[-1] = urllib.quote_plus(tmp[-1])
 				item["path"] = match.group(1).join(tmp)
@@ -440,7 +440,7 @@ def AddPlaylist(tracking_string="Add Playlist"):
 			playlists = plugin.get_storage('playlists')
 			name = plugin.keyboard(heading='Đặt tên cho Playlist')
 
-			item = "[[COLOR red]%s[/COLOR]] %s@%s" % (name, gid, sid)
+			item = "[[COLOR yellow]%s[/COLOR]] %s@%s" % (name, gid, sid)
 			if match_passw:
 				item += "@@" + match_passw.group(1)
 			if 'sections' in playlists:
@@ -762,7 +762,7 @@ def AddTracking(items):
 	'''
 
 	for item in items:
-		if "plugin.video.tranhuyhoang.playlist" in item["path"]:
+		if "plugin.video.thongld.vnplaylist" in item["path"]:
 			tmps = item["path"].split("?")
 			if len(tmps) == 1:
 				tail = ""
