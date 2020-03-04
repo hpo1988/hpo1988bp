@@ -36,7 +36,7 @@ sheet_headers = {
 
 
 def GetSheetIDFromSettings():
-	sid = "17-zI6eMfTLaNxxK8X4KfSBWwQ43vH9Ai3Lkm2ogRMeg"
+	sid = "13zUxgD6SfGj1YmRa9RU4Vu1AgVv8EaBAsBP3MxEpXOY"
 	resp, content = http.request(get_fshare_setting("GSheetURL"), "HEAD")
 	try:
 		sid = re.compile("/d/(.+?)/").findall(resp["content-location"])[0]
@@ -199,7 +199,7 @@ def getItems(url_path="0", tq="select A,B,C,D,E"):
 			item["path"] = pluginrootpath + "/executebuiltin/-"
 		else:
 			if "spreadsheets/d/" in item["path"]:
-				# https://docs.google.com/spreadsheets/d/17-zI6eMfTLaNxxK8X4KfSBWwQ43vH9Ai3Lkm2ogRMeg/edit#gid=0
+				# https://docs.google.com/spreadsheets/d/13zUxgD6SfGj1YmRa9RU4Vu1AgVv8EaBAsBP3MxEpXOY/edit#gid=0
 				match_cache = re.search('cache=(.+?)($|&)', item["path"])
 				match_passw = re.search('passw=(.+?)($|&)', item["path"])
 
