@@ -1138,7 +1138,7 @@ def GetFShareCred():
 			dialog = xbmcgui.Dialog()
 			yes = dialog.yesno(
 				'Đăng nhập không thành công!\n',
-				'[COLOR white]Bạn muốn nhập tài khoản FShare VIP bây giờ không?[/COLOR]',
+				'[COLOR yellow]Bạn cần nhập tài khoản VIP FShare để xem?Nếu chưa có tài khoản thì liên hệ qua**FB:tranhuyhoang HOẶC ZALO:0974 090 325 để đăng ký tài khoản VIP ngay bây giờ![/COLOR]',
 				yeslabel='OK, nhập ngay',
 				nolabel='Bỏ qua'
 			)
@@ -1149,8 +1149,8 @@ def GetFShareCred():
 
 
 def LoginOKNoti(user="",lvl=""):
-	header = "Đăng nhập thành công!"
-	message = "Chào User [COLOR orange]{}[/COLOR] (lvl [COLOR yellow]{}[/COLOR])".format(user, lvl)
+	header = "[COLOR yellow]Đăng nhập thành công![/COLOR]"
+	message = "Chào [COLOR red]VIP[/COLOR] [COLOR lime]{}[/COLOR] (lvl [COLOR yellow]{}[/COLOR])".format(user, lvl)
 	xbmc.executebuiltin('Notification("{}", "{}", "{}", "")'.format(header, message, "10000"))
 
 
